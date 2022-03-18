@@ -29,6 +29,11 @@
 		<jackson-databind-nullable.version>0.2.1</jackson-databind-nullable.version>
 		<springfox-swagger2.version>3.0.0</springfox-swagger2.version>
 		<validation-api.version>2.0.1.Final</validation-api.version>
+		<junit-jupiter-engine.version>5.8.2</junit-jupiter-engine.version>
+		<mockito-core.version>4.0.0</mockito-core.version>
+		<junit-platform-runner.version>1.2.0</junit-platform-runner.version>
+		<junit-vintage-engine.version>5.7.1</junit-vintage-engine.version>
+		<mockito-junit-jupiter.version>4.0.0</mockito-junit-jupiter.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -85,6 +90,36 @@
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 			<version>${validation-api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit-jupiter-engine.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>${mockito-core.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-runner</artifactId>
+			<version>${junit-platform-runner.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.vintage</groupId>
+			<artifactId>junit-vintage-engine</artifactId>
+			<version>${junit-vintage-engine.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>${mockito-junit-jupiter.version}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
