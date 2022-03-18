@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="20220318-2" author="sviridenko">
+        <loadData
+                file="liquibase/data/currency_data.csv"
+                separator=";"
+                tableName="currencies">
+            <column name="code" type="numeric"/>
+            <column name="description" type="string"/>
+            <column name="alpha3" type="string"/>
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>
