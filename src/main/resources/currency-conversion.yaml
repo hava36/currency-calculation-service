@@ -8,74 +8,74 @@ info:
     email: vhavabox@gmail.com
   version: 1.0.0
 servers:
-- url: https://virtserver.swaggerhub.com/hava36/currency-conversion-service/1.0.0
-  description: SwaggerHub API Auto Mocking
-- url: http://127.0.0.1
-  description: conversion server
+  - url: http://127.0.0.1
+    description: conversion server
 tags:
-- name: users
-  description: Available for all users
+  - name: users
+    description: available for all users
 paths:
   /api/v1/currency/conversion:
     get:
       tags:
-      - users
+        - users
       summary: convert currency from one to another
       description: convert currency from one to another
       operationId: convertCurrency
       parameters:
-      - name: currencyCodeFrom
-        in: query
-        description: source currency
-        required: false
-        style: form
-        explode: true
-        schema:
-          maximum: 3
-          minimum: 2
-          type: integer
-          example: 826
-      - name: currencyCodeTo
-        in: query
-        description: destination currency
-        required: false
-        style: form
-        explode: true
-        schema:
-          maximum: 3
-          minimum: 2
-          type: integer
-          example: 978
-      - name: currencyAmount
-        in: query
-        description: destination currency
-        required: false
-        style: form
-        explode: true
-        schema:
-          minimum: 0
-          type: number
-          example: 123.21
+        - name: currencyCodeFrom
+          in: query
+          description: source currency
+          required: false
+          style: form
+          explode: true
+          schema:
+            maximum: 3
+            minimum: 2
+            type: integer
+            example: 826
+        - name: currencyCodeTo
+          in: query
+          description: destination currency
+          required: false
+          style: form
+          explode: true
+          schema:
+            maximum: 3
+            minimum: 2
+            type: integer
+            example: 978
+        - name: amount
+          in: query
+          description: destination currency
+          required: false
+          style: form
+          explode: true
+          schema:
+            minimum: 0
+            type: number
+            example: 123.21
       responses:
         "200":
           description: currency has been converted successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CurrencyConversionResponse'
+                $ref: '#/components/schemas/ConversionSuccessResponse'
         "500":
           description: internal server error
-        "503":
-          description: server is unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConversionFailResponse'
 components:
   schemas:
-    CurrencyConversionResponse:
+    ConversionSuccessResponse:
       type: object
       properties:
         currencyFrom:
-          $ref: '#/components/schemas/CurrencyResponse'
+          $ref: '#/components/schemas/CurrencyItem'
         currencyTo:
-          $ref: '#/components/schemas/CurrencyResponse'
+          $ref: '#/components/schemas/CurrencyItem'
         margin:
           maximum: 1
           minimum: 0
@@ -86,7 +86,13 @@ components:
         totalAmount:
           minimum: 0
           type: number
-    CurrencyResponse:
+    ConversionFailResponse:
+      type: object
+      properties:
+        errorDescription:
+          type: string
+          maxLength: 300
+    CurrencyItem:
       type: object
       properties:
         code:
@@ -102,8 +108,8 @@ components:
         rates:
           type: array
           items:
-            $ref: '#/components/schemas/RateResponse'
-    RateResponse:
+            $ref: '#/components/schemas/RateItem'
+    RateItem:
       type: object
       properties:
         id:

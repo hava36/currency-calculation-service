@@ -1,14 +1,14 @@
 package com.hava.demo.currency_calculation.service.mapper;
 
 import com.hava.demo.currency_calculation.entity.Currency;
-import com.hava.demo.currency_calculation.model.v1.CurrencyResponse;
+import com.hava.demo.currency_calculation.model.CurrencyItem;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring", uses = {RateMapper.class})
 public interface CurrencyMapper {
 
-    CurrencyResponse toDto(Currency currency);
+    CurrencyItem toDto(Currency currency);
 
-    Currency toEntity(CurrencyResponse currencyDto);
+    Currency toEntity(CurrencyItem currencyDto);
 
 }

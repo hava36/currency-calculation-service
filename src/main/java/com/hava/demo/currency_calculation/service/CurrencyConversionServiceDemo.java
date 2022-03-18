@@ -4,7 +4,7 @@ import com.hava.demo.currency_calculation.entity.Currency;
 import com.hava.demo.currency_calculation.entity.Rate;
 import com.hava.demo.currency_calculation.exception.CurrencyNotFoundException;
 import com.hava.demo.currency_calculation.exception.RateNotFoundException;
-import com.hava.demo.currency_calculation.model.v1.CurrencyConversionResponse;
+import com.hava.demo.currency_calculation.model.ConversionSuccessResponse;
 import com.hava.demo.currency_calculation.repository.CurrencyRepository;
 import com.hava.demo.currency_calculation.service.mapper.CurrencyMapper;
 import java.math.BigDecimal;
@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CurrencyConversionServiceDemo implements CurrencyConversionService<CurrencyConversionResponse> {
+public class CurrencyConversionServiceDemo implements CurrencyConversionService<ConversionSuccessResponse> {
 
     private final CurrencyRepository currencyRepository;
     private final CurrencyMapper currencyMapper;
@@ -32,7 +32,7 @@ public class CurrencyConversionServiceDemo implements CurrencyConversionService<
 
 
     @Override
-    public CurrencyConversionResponse convert(Integer currencyCodeFrom, Integer currencyCodeTo, BigDecimal amount) {
+    public ConversionSuccessResponse convert(Integer currencyCodeFrom, Integer currencyCodeTo, BigDecimal amount) {
 
         Map<Integer, Currency> currencies = currencyRepository.findByCodeIn(List.of(currencyCodeFrom, currencyCodeTo))
             .stream().collect(Collectors.toMap(Currency::getCode, Function.identity()));
@@ -42,7 +42,7 @@ public class CurrencyConversionServiceDemo implements CurrencyConversionService<
         BigDecimal convertedAmount = calculateCurrencyAmount(currencyFrom, currencyTo, amount);
         BigDecimal totalAmount = calculateTotalAmount(convertedAmount);
 
-        return new CurrencyConversionResponse()
+        return new ConversionSuccessResponse()
             .currencyFrom(currencyMapper.toDto(currencyFrom))
             .currencyTo(currencyMapper.toDto(currencyTo))
             .currencyAmount(convertedAmount)
@@ -66,11 +66,11 @@ public class CurrencyConversionServiceDemo implements CurrencyConversionService<
         Rate rateFrom = getActualRate(currencyFrom);
         Rate rateTo = getActualRate(currencyTo);
         double currencyAmount = amount.doubleValue() * rateFrom.getMultiplicity() * rateTo.getRate() / rateFrom.getRate() * rateTo.getMultiplicity();
-        return new BigDecimal(currencyAmount).setScale(2, RoundingMode.HALF_UP);
+        return BigDecimal.valueOf(currencyAmount).setScale(2, RoundingMode.HALF_UP);
     }
 
     private BigDecimal calculateTotalAmount(BigDecimal convertedAmount) {
-        return convertedAmount.multiply(new BigDecimal(1 + margin.doubleValue())).setScale(2, RoundingMode.HALF_UP);
+        return convertedAmount.multiply(BigDecimal.valueOf(1 + margin.doubleValue())).setScale(2, RoundingMode.HALF_UP);
     }
 
     private Rate getActualRate(Currency currency) {
