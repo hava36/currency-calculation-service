@@ -19,7 +19,7 @@ class RateMapperImplTest {
     @Test
     void toDto_MapFields_FieldsHaveBeenMappedSuccessfully() {
 
-        Rate entity = new Rate().rateValue(1d).currencyCode(643).id(1l).multiplicity(1d);
+        Rate entity = new Rate().rateValue(1d).currencyCode(643).id(1L).multiplicity(1d);
         RateItem dto = rateMapper.toDto(entity);
         assertEquals(1, dto.getId());
         assertEquals(1d, dto.getRateValue().doubleValue());

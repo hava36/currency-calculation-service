@@ -1,6 +1,6 @@
 package com.hava.demo.currency_calculation.service.mapper;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -8,13 +8,11 @@ import com.hava.demo.currency_calculation.entity.Currency;
 import com.hava.demo.currency_calculation.entity.Rate;
 import com.hava.demo.currency_calculation.model.CurrencyItem;
 import com.hava.demo.currency_calculation.model.RateItem;
-import java.math.BigDecimal;
 import java.util.Collections;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
