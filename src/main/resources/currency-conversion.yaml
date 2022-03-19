@@ -8,19 +8,19 @@ info:
     email: vhavabox@gmail.com
   version: 1.0.0
 servers:
-  - url: http://127.0.0.1
+  - url: http://127.0.0.1:8080/api/v1
     description: conversion server
 tags:
-  - name: users
+  - name: currency
     description: available for all users
 paths:
-  /api/v1/currency/conversion:
+  /conversion/currency:
     get:
       tags:
-        - users
+        - currency
       summary: convert currency from one to another
       description: convert currency from one to another
-      operationId: convertCurrency
+      operationId: convert
       parameters:
         - name: currencyCodeFrom
           in: query
@@ -44,7 +44,7 @@ paths:
             minimum: 2
             type: integer
             example: 978
-        - name: amount
+        - name: currencyAmount
           in: query
           description: destination currency
           required: false
@@ -119,7 +119,7 @@ components:
           maximum: 3
           minimum: 2
           type: integer
-        rate:
+        rateValue:
           type: number
         multiplicity:
           type: number

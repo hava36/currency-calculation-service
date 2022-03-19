@@ -18,15 +18,35 @@ public class Rate implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "currency_code")
     private Integer currencyCode;
 
     @Column(name = "rate")
-    private Float rate;
+    private Double rateValue;
 
     @Column(name = "multiplicity")
-    private Float multiplicity;
+    private Double multiplicity;
+
+    public Rate id(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public Rate currencyCode(Integer currencyCode) {
+        this.currencyCode = currencyCode;
+        return this;
+    }
+
+    public Rate rateValue(Double rate) {
+        this.rateValue = rate;
+        return this;
+    }
+
+    public Rate multiplicity(Double multiplicity) {
+        this.multiplicity = multiplicity;
+        return this;
+    }
 
 }

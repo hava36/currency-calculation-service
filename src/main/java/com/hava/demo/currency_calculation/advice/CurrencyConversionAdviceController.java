@@ -1,6 +1,6 @@
-package com.hava.demo.currency_calculation.controller.v1.advice;
+package com.hava.demo.currency_calculation.advice;
 
-import com.hava.demo.currency_calculation.controller.v1.CurrencyConversionController;
+import com.hava.demo.currency_calculation.controller.ConversionApi;
 import com.hava.demo.currency_calculation.exception.CurrencyNotFoundException;
 import com.hava.demo.currency_calculation.exception.RateNotFoundException;
 import com.hava.demo.currency_calculation.model.ConversionFailResponse;
@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-@ControllerAdvice(assignableTypes = CurrencyConversionController.class)
+@ControllerAdvice(assignableTypes = ConversionApi.class)
 public class CurrencyConversionAdviceController {
 
     @ExceptionHandler({CurrencyNotFoundException.class, RateNotFoundException.class})

@@ -186,7 +186,7 @@
                                 ${project.basedir}/src/main/resources/currency-conversion.yaml
                             </inputSpec>
                             <generatorName>spring</generatorName>
-                            <apiPackage>com.hava.demo.currency_calculation.controller.v1</apiPackage>
+                            <apiPackage>com.hava.demo.currency_calculation.controller</apiPackage>
                             <modelPackage>com.hava.demo.currency_calculation.model</modelPackage>
                             <supportingFilesToGenerate>
                                 ApiUtil.java

@@ -32,4 +32,25 @@ public class Currency implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "currencyCode")
     private List<Rate> rates;
 
+    public Currency code(Integer code) {
+        this.code = code;
+        return this;
+    }
+
+    public Currency description(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public Currency alpha3(String alpha3) {
+        this.alpha3 = alpha3;
+        return this;
+    }
+
+    public Currency rates(List<Rate> rates) {
+        this.rates = rates;
+        return this;
+    }
+
+
 }
